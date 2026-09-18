@@ -1,0 +1,38 @@
+int LED = 2;
+int sensor_pin = 5;
+int sensor_val = -1;
+int loop_ct = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  pinMode(LED, OUTPUT);
+  pinMode(sensor_pin, INPUT_PULLUP);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  
+  Serial.println("Reading Button State");
+  Serial.println("Starting While Loop - Checking If Button Is HIGH");
+  loop_ct= 0;
+  sensor_val = digitalRead(sensor_pin);
+  while (sensor_val == HIGH){
+    loop_ct++;
+    Serial.print("Button High : Make Check Loop #");
+    Serial.println(loop_ct);
+    sensor_val = digitalRead(sensor_pin);
+  }
+  loop_ct = 0;
+  sensor_val = digitalRead(sensor_pin);
+  Serial.println("Starting While Loop - Checking If Button Is LOW");
+  while (sensor_val == LOW){
+    loop_ct++;
+    Serial.print("Button Low : Break Check Loop #");
+    Serial.println(loop_ct);
+    sensor_val = digitalRead(sensor_pin);
+  }
+  Serial.println("Ending Make/Break While Loop");
+
+
+
+}
